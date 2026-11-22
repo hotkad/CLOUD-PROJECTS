@@ -1,0 +1,12 @@
+// Lab analytic: PowerShell initiating Notepad, based on observed process-injection chain.
+// Tune and validate against your own environment before production use.
+DeviceProcessEvents
+| where InitiatingProcessFileName =~ "powershell.exe"
+| where FileName =~ "notepad.exe"
+| project
+    Timestamp,
+    DeviceId,
+    ReportId,
+    DeviceName,
+    InitiatingProcessAccountName,
+    InitiatingProcessAccountObjectId
