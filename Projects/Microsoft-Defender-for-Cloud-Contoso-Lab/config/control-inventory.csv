@@ -1,0 +1,7 @@
+control,scope,configuration,verification,source_lab_status
+Defender for Servers Plan 2,Subscription,Standard tier subplan P2,az security pricing show,Passed
+JIT RDP,VM1,TCP 3389 maximum request 1 hour,Defender for Cloud JIT configured tab,Configured second attempt
+Key Vault network,Subnet1-1,Microsoft.KeyVault service endpoint selected subnet default Deny,Key Vault Networking,Passed
+Key Vault purge protection,Key Vault,Enabled,Key Vault Properties,Passed
+Azure SQL private endpoint,SQL server,Private endpoint in Subnet1-1 connection Approved,Private endpoint connection list,Approved
+Guest Configuration,VMs,Managed identity and OS-specific extension,VM extension list plus Defender recommendation,VM1 succeeded; wider assessment pending
