@@ -1,0 +1,12 @@
+# Azure CLI reference. Review existing NIC/subnet NSGs and effective rules first.
+# Replace placeholders; attach to CLIENT01 NIC only.
+az network nsg create --resource-group <resource-group> --name nsg-client01-isolate --location <azure-region>
+
+az network nsg rule create --resource-group <resource-group> --nsg-name nsg-client01-isolate --name Allow-DC01-Required-Ports --priority 100 --direction Outbound --access Allow --protocol '*' --destination-address-prefixes 172.16.0.5 --destination-port-ranges 53 88 389 445 464 636 135 3268 3269 49152-65535
+
+az network nsg rule create --resource-group <resource-group> --nsg-name nsg-client01-isolate --name Deny-APP01-Web --priority 110 --direction Outbound --access Deny --protocol '*' --destination-address-prefixes 172.16.0.10 --destination-port-ranges '*'
+
+az network nic update --resource-group <resource-group> --name <client01-nic-name> --network-security-group nsg-client01-isolate
+
+# Verify effective rules and test from CLIENT01.
+az network nic show-effective-nsg --resource-group <resource-group> --name <client01-nic-name>
