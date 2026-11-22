@@ -1,0 +1,12 @@
+*.log
+*.tmp
+*.bak
+.env
+*.pfx
+*.p12
+*.key
+*.pem
+*.cer
+*.crt
+secrets/
+screenshots/raw/
