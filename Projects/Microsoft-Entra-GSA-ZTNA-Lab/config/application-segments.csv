@@ -1,0 +1,6 @@
+application,destination,protocol,ports,scope
+LabCorp Active Directory,172.16.0.5,TCP/UDP,"53;88;389;464",DNS Kerberos LDAP
+LabCorp Active Directory,172.16.0.5,TCP,"135;445;636;3268;3269;49152-65535",RPC SMB LDAPS Global Catalog and dynamic RPC
+Finance Portal,172.16.0.10,TCP,80,Single IIS portal host-header site
+HR Portal,172.16.0.10,TCP,80,Single IIS portal host-header site
+Operations Portal,172.16.0.10,TCP,80,Single IIS portal host-header site
