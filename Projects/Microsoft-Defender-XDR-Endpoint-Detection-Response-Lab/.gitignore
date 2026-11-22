@@ -1,0 +1,16 @@
+*.log
+*.tmp
+*.bak
+.env
+*.zip
+*.7z
+*.pfx
+*.p12
+*.key
+*.pem
+*.cer
+*.crt
+secrets/
+evidence/raw/
+onboarding-packages/
+screenshots/raw/
