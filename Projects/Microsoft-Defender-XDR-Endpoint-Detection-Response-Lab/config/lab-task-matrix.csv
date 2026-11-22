@@ -1,0 +1,11 @@
+task,control_or_activity,device_or_scope,configuration_or_evidence,recorded_outcome
+0,Defender XDR workspace,Lab tenant,Incident workspace provisioned,Provisioned
+1,Defender device group,Group1,Full automation; Windows 10 and Windows 11,Created
+1,Endpoint onboarding,Client2,Windows 10/11; Local Script; Streamlined connectivity,Onboarded
+1,Attack simulation,Client2,AttackScript.ps1 executed after onboarding,Incident generated
+2,ASR policy,sg-Executive,EndpointPolicy1; block JavaScript/VBScript launching downloaded executables,Assigned
+3,Incident investigation,Incident named Empire,Three alerts; PowerShell to Notepad process injection,Investigated
+3,Custom indicator,All lab devices,Indicator1; Block execution; High severity; Execution category,Created
+3,Custom detection,All devices,SuspiciousPowershell; hourly; collect package; mark user compromised,Created
+4,Live Response,Client2,Connections inspected; investigation package collected,Completed
+4,Containment,Client2,Device isolation action,Isolated
