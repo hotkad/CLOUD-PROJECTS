@@ -107,3 +107,14 @@ Start with docs/deployment-runbook.md. Scripts are reference implementations and
 ## Author
 
 Cloud Security Engineering Portfolio — Microsoft Entra ID, Zero Trust Network Access, Global Secure Access, Azure networking, identity governance, endpoint onboarding, troubleshooting, and PowerShell/Azure CLI automation.
+
+
+## Expanded capstone documentation
+
+The original 75-page implementation record has been distilled into additional sanitised engineering documentation:
+
+- [Capstone architecture and build record](docs/capstone-architecture-and-build-record.md)
+- [Troubleshooting and diagnostic register](docs/troubleshooting-register.md) — ten recorded blockers with root causes and resolutions
+- [Validation matrix and production readiness](docs/validation-and-production-readiness.md) — ten passing tests and enterprise hardening gaps
+
+These additions preserve the implementation's actual distinctions: CLIENT01's alternate network path, CLIENT02's GSA-only access, CLIENT03's negative authorization test, private DNS/NRPT, RPC dynamic ports, tenant binding, and Conditional Access signalling. The employer-branded source PDF itself is not copied into this public repository; the public documentation is sanitised and avoids tenant identifiers and request IDs.
