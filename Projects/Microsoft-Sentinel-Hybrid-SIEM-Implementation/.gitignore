@@ -1,0 +1,15 @@
+*.log
+*.tmp
+*.bak
+.env
+*.json
+*.csv.bak
+*.pfx
+*.p12
+*.key
+*.pem
+*.cer
+*.crt
+secrets/
+evidence/raw/
+screenshots/raw/
