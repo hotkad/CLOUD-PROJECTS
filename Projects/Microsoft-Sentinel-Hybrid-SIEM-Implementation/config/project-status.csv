@@ -1,0 +1,7 @@
+module,scope,reported_status,notes
+1,Sentinel deployment and Azure telemetry,Complete,Workspace SentinelLAW-Honesty; connectors Entra ID Defender for Cloud and NSG
+1,Windows telemetry,Complete,AMA and DCR-WindowsSecurityEvents-01; DC EP1-VM EP2-VM
+2,Linux syslog integration,Complete,EP3-VM-Linux; rsyslog local4; AMA; KQL validation
+3,Azure Arc and hybrid forwarding,In progress,Arc onboarding and DC-to-collector forwarding observed; collector-to-Sentinel not confirmed
+4,UEBA and custom analytics,Partially complete,UEBA enabled; failed logon incident simulation reported
+4,Logic App notification,Partially complete,Send Basic Email playbook attached; email delivery reported
