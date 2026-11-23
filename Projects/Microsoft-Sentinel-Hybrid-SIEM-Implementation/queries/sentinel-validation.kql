@@ -1,0 +1,30 @@
+// 1. Confirm that monitored Azure VMs are reporting.
+Heartbeat
+| where TimeGenerated > ago(24h)
+| summarize LastHeartbeat=max(TimeGenerated) by Computer
+| order by LastHeartbeat desc
+
+// 2. Validate Linux local4 test messages.
+Syslog
+| where TimeGenerated > ago(24h)
+| where Facility == "local4"
+| where SyslogMessage contains "Test message"
+| project TimeGenerated, Computer, Facility, SeverityLevel, SyslogMessage
+| order by TimeGenerated desc
+
+// 3. Review Windows failed logons (Event ID 4625).
+SecurityEvent
+| where TimeGenerated > ago(24h)
+| where EventID == 4625
+| summarize FailedLogons=count() by Account, Computer, bin(TimeGenerated, 15m)
+| order by TimeGenerated desc
+
+// 4. Basic alert volume by alert name.
+SecurityAlert
+| where TimeGenerated > ago(24h)
+| summarize AlertCount=count() by AlertName
+| order by AlertCount desc
+
+// NOTE: The failed-logon query is a hunting/validation example.
+// Set detection thresholds and suppression logic only after baselining
+// the environment and confirming the intended event fields.
