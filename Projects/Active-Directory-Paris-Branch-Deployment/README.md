@@ -93,3 +93,9 @@ A procedure being documented does not mean the task was completed. Mark a requir
 - [Active Directory Recycle Bin](https://learn.microsoft.com/windows-server/identity/ad-ds/get-started/adac/active-directory-recycle-bin)
 - [Restrict NTLM authentication](https://learn.microsoft.com/windows/security/threat-protection/security-policy-settings/network-security-restrict-ntlm-ntlm-authentication-in-this-domain)
 - [Audit Logon](https://learn.microsoft.com/windows/security/threat-protection/auditing/basic-audit-logon-events)
+
+## Design, threat model and evidence
+- [Business requirements, architecture, design decisions and threat model](docs/design-and-risk-analysis.md)
+- [Evidence register](evidence/README.md)
+
+**Correction:** the requested contractor protection setting is documented as **Account is sensitive and cannot be delegated**. This is distinct from membership in the Protected Users group. Follow the implementation guide and validate the exact requested account flag.
