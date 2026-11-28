@@ -77,3 +77,9 @@ The source lab temporarily disabled Tamper Protection and real-time protection o
 - [Collect investigation package](https://learn.microsoft.com/defender-endpoint/respond-machine-alerts)
 
 Cloud Security & Endpoint Detection Engineering Portfolio · Microsoft Defender XDR · KQL · Incident Response
+
+## Design, threat model and evidence
+- [Business requirements, design decisions and threat model](docs/design-and-risk-analysis.md)
+- [Evidence register](evidence/README.md)
+
+The Client1/Client2 naming discrepancy in the source record must be resolved against the actual Defender device inventory before publishing endpoint-specific evidence.

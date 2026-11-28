@@ -1,12 +1,41 @@
-# Azure CLI reference. Review existing NIC/subnet NSGs and effective rules first.
-# Replace placeholders; attach to CLIENT01 NIC only.
-az network nsg create --resource-group <resource-group> --name nsg-client01-isolate --location <azure-region>
+#!/usr/bin/env bash
+# Reference only. This script creates an NSG but deliberately does NOT attach it.
+# Attaching a new NSG to a NIC can replace an existing NIC-level NSG association.
+# Inspect subnet/NIC NSGs and effective rules, then merge controls through change control.
+set -euo pipefail
 
-az network nsg rule create --resource-group <resource-group> --nsg-name nsg-client01-isolate --name Allow-DC01-Required-Ports --priority 100 --direction Outbound --access Allow --protocol '*' --destination-address-prefixes 172.16.0.5 --destination-port-ranges 53 88 389 445 464 636 135 3268 3269 49152-65535
+RG="<resource-group>"
+LOCATION="<azure-region>"
+NSG="nsg-client01-isolate"
+NIC="<client01-nic-name>"
 
-az network nsg rule create --resource-group <resource-group> --nsg-name nsg-client01-isolate --name Deny-APP01-Web --priority 110 --direction Outbound --access Deny --protocol '*' --destination-address-prefixes 172.16.0.10 --destination-port-ranges '*'
+az network nsg create --resource-group "$RG" --name "$NSG" --location "$LOCATION"
 
-az network nic update --resource-group <resource-group> --name <client01-nic-name> --network-security-group nsg-client01-isolate
+# AD ports are split by protocol. The dynamic RPC range is broad; use only if
+# required by the validated lab design and restrict to DC01 as the destination.
+az network nsg rule create --resource-group "$RG" --nsg-name "$NSG" \
+  --name Allow-DC01-DNS-TCP --priority 100 --direction Outbound --access Allow \
+  --protocol Tcp --destination-address-prefixes 172.16.0.5 --destination-port-ranges 53
 
-# Verify effective rules and test from CLIENT01.
-az network nic show-effective-nsg --resource-group <resource-group> --name <client01-nic-name>
+az network nsg rule create --resource-group "$RG" --nsg-name "$NSG" \
+  --name Allow-DC01-DNS-UDP --priority 101 --direction Outbound --access Allow \
+  --protocol Udp --destination-address-prefixes 172.16.0.5 --destination-port-ranges 53 88 389 464
+
+az network nsg rule create --resource-group "$RG" --nsg-name "$NSG" \
+  --name Allow-DC01-AD-TCP --priority 102 --direction Outbound --access Allow \
+  --protocol Tcp --destination-address-prefixes 172.16.0.5 \
+  --destination-port-ranges 88 135 389 445 464 636 3268 3269 49152-65535
+
+az network nsg rule create --resource-group "$RG" --nsg-name "$NSG" \
+  --name Deny-APP01 --priority 110 --direction Outbound --access Deny \
+  --protocol '*' --destination-address-prefixes 172.16.0.10 --destination-port-ranges '*'
+
+az network nsg show --resource-group "$RG" --name "$NSG" --output table
+
+# Before any NIC association:
+# 1. Inspect current NIC and subnet NSG associations.
+# 2. Merge the required rules into the approved existing NSG where possible.
+# 3. If a dedicated NIC NSG is approved, preserve all required existing rules.
+# 4. Attach through an approved change; then inspect effective rules.
+# az network nic show --resource-group "$RG" --name "$NIC" --query "networkSecurityGroup.id"
+# az network nic show-effective-nsg --resource-group "$RG" --name "$NIC"

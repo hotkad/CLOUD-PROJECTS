@@ -1,7 +1,7 @@
 component,role,hostname_or_fqdn,private_ip,network_posture,notes
 DC01,Domain Controller and DNS,dc01.labcorp.local,172.16.0.5,Server VNet,AD DS DNS and Entra Connect
 CONN01,Private Network Connector,conn01.labcorp.local,,Peered server subnet,Outbound connector service
-APP01,IIS application host,app01.labcorp.local,172.16.0.10,Server VNet,Three host-header IIS sites
+APP01,IIS application host,app01.labcorp.local,172.16.0.10,Server VNet,Finance HR and Admin host-header IIS sites
 CLIENT01,Legacy domain/hybrid endpoint,client01.labcorp.local,,Peered subnet,NIC-scoped NSG isolation
 CLIENT02,Authorised Entra endpoint,client02,,Isolated subnet,Assigned test identity
 CLIENT03,Negative-control Entra endpoint,client03,,Isolated subnet,Unassigned test identity

@@ -81,3 +81,11 @@ flowchart TB
 - [Purge protection](https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview)
 - [Azure Private Endpoint](https://learn.microsoft.com/azure/private-link/private-endpoint-overview)
 - [Guest Configuration](https://learn.microsoft.com/azure/governance/machine-configuration/overview)
+
+## Design, threat model and evidence
+- [Business requirements, design decisions and threat model](docs/design-and-risk-analysis.md)
+- [Evidence register](evidence/README.md)
+- [SQL private DNS validation](docs/evidence/sql-private-dns-validation.md)
+- [SQL private DNS deployment example](scripts/sql-private-dns.sh)
+
+The SQL private endpoint is not end-to-end validated until private DNS resolution and client connectivity are tested. Guest Configuration remains partially evidenced; see the validation matrix.

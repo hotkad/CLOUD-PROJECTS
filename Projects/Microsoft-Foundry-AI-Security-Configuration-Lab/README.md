@@ -128,3 +128,9 @@ The assessment requested a filter named `Filter1` and explicitly did not require
 - [Microsoft Foundry documentation](https://learn.microsoft.com/azure/ai-foundry/)
 - [Azure Monitor diagnostic settings](https://learn.microsoft.com/azure/azure-monitor/essentials/diagnostic-settings)
 - [Azure role-based access control](https://learn.microsoft.com/azure/role-based-access-control/overview)
+
+## Design, threat model and evidence
+- [Business requirements, target architecture, design decisions and threat model](docs/design-and-risk-analysis.md)
+- [Evidence register](evidence/README.md)
+
+Project status remains **In progress**. The ProjectX blocklist creation issue is unresolved; do not claim input/output filtering is implemented until the blocklist is created, attached and functionally tested.
