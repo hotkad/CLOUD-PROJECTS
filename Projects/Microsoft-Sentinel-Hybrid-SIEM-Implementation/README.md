@@ -91,3 +91,10 @@ flowchart TB
 - [Windows Event Forwarding](https://learn.microsoft.com/windows/security/operating-system-security/device-management/use-windows-event-forwarding-to-assist-in-intrusion-detection)
 
 Cloud Security Engineering Portfolio · Microsoft Sentinel · SIEM · Hybrid Monitoring · KQL
+
+## Design, threat model and evidence
+- [Business requirements, design decisions and threat model](docs/design-and-risk-analysis.md)
+- [Evidence register](evidence/README.md)
+- [Azure network flow logging modernisation](docs/network-flow-logging-modernisation.md)
+
+The source report's NSG Flow Logs configuration is historical. New NSG flow logs cannot be created after 30 June 2025 and the feature retires 30 September 2027; new deployments should use VNet flow logs. See the Microsoft lifecycle guidance.
