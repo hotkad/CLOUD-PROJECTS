@@ -118,3 +118,10 @@ The original 75-page implementation record has been distilled into additional sa
 - [Validation matrix and production readiness](docs/validation-and-production-readiness.md) — ten passing tests and enterprise hardening gaps
 
 These additions preserve the implementation's actual distinctions: CLIENT01's alternate network path, CLIENT02's GSA-only access, CLIENT03's negative authorization test, private DNS/NRPT, RPC dynamic ports, tenant binding, and Conditional Access signalling. The employer-branded source PDF itself is not copied into this public repository; the public documentation is sanitised and avoids tenant identifiers and request IDs.
+
+## Design, threat model and evidence
+- [Business requirements, design decisions and threat model](docs/design-and-risk-analysis.md)
+- [Evidence register](evidence/README.md)
+- [Security review](docs/security-review.md)
+
+The IIS deployment script and lab inventory use the Admin portal hostname to align with the private DNS records. Verify the actual IIS binding in the lab before treating the script as a rebuild record.
