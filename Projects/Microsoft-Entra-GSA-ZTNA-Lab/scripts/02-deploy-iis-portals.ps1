@@ -1,9 +1,10 @@
 # Deploy three IIS host-header sites on APP01. Run elevated in a disposable lab.
+# Hostnames align with architecture.md and scripts/03-private-dns-records.ps1.
 Import-Module WebAdministration -ErrorAction Stop
 $Sites = @(
     @{ Name="Portal-Finance"; Host="finance.labcorp.local"; Path="C:\inetpub\portal-finance" },
     @{ Name="Portal-HR"; Host="hr.labcorp.local"; Path="C:\inetpub\portal-hr" },
-    @{ Name="Portal-Ops"; Host="ops.labcorp.local"; Path="C:\inetpub\portal-ops" }
+    @{ Name="Portal-Admin"; Host="admin.labcorp.local"; Path="C:\inetpub\portal-admin" }
 )
 foreach ($Site in $Sites) {
     New-Item -ItemType Directory -Path $Site.Path -Force | Out-Null
@@ -22,6 +23,8 @@ foreach ($Site in $Sites) {
     }
     if (-not (Get-Website -Name $Site.Name -ErrorAction SilentlyContinue)) {
         New-Website -Name $Site.Name -PhysicalPath $Site.Path -ApplicationPool $Pool -Port 80 -HostHeader $Site.Host | Out-Null
+    } else {
+        Write-Warning "Website $($Site.Name) already exists; review its binding rather than overwriting it."
     }
 }
-Write-Host "IIS portal deployment complete. Validate bindings and local HTTP access." -ForegroundColor Green
+Write-Host "IIS portal deployment attempted. Verify site state, bindings, DNS and HTTP response before marking complete."
